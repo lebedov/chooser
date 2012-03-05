@@ -20,7 +20,7 @@ You can also download the source tarball, unpack, and run
 
     python setup.py install
 
-from within the source directory. Note that ``chooser`` 
+from within the source directory. Note that `chooser` 
 requires `wxPython <http://wxpython.org/>`_.
 
 Author
