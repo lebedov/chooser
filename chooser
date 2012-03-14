@@ -35,7 +35,8 @@ def which(program):
     return None
 
 # Check whether certain common browsers are present:
-possible_browsers = {'Chromium': 'chromium-browser',
+possible_browsers = {'Arora': 'arora',
+                     'Chromium': 'chromium-browser',
                      'Epiphany': 'epiphany',
                      'Firefox': 'firefox',
                      'Konqueror': 'konqueror',
@@ -48,7 +49,7 @@ for browser in possible_browsers:
     full_path = which(name)
     if full_path:
         browsers[browser] = (name, full_path)
-    
+
 class AppFrame(wx.Frame):
     def __init__(self, parent, id, title):
 
@@ -61,13 +62,13 @@ class AppFrame(wx.Frame):
         panel = wx.Panel(self, -1)
         sizer = wx.BoxSizer(wx.VERTICAL)
         grid = wx.GridSizer(1, N, 2, 2)
-        
+
         # Dict to map button ids to browser commands:
         self.button_to_browser = {}
         for browser in browsers.keys():
             name, full_path = browsers[browser]
 
-            icon = wx.ArtProvider.GetIcon(name, wx.ART_OTHER, 
+            icon = wx.ArtProvider.GetIcon(name, wx.ART_OTHER,
                                           (64, 64))
             bmp = wx.BitmapFromIcon(icon)
             button = wx.BitmapButton(panel, -1, bmp, style=wx.NO_BORDER)
@@ -85,7 +86,7 @@ class AppFrame(wx.Frame):
         panel.SetFocusIgnoringChildren()
 
         # Exit if the ESC key is pressed:
-        panel.Bind(wx.EVT_KEY_DOWN, self.OnKeyDown)       
+        panel.Bind(wx.EVT_KEY_DOWN, self.OnKeyDown)
 
     def OnClick(self, event):
 
@@ -97,7 +98,7 @@ class AppFrame(wx.Frame):
         keycode = event.GetKeyCode()
         if keycode == wx.WXK_ESCAPE:
             self.Close()
-            
+
 class App(wx.App):
     def OnInit(self):
 
@@ -109,6 +110,6 @@ class App(wx.App):
         frame.Show(True)
         self.SetTopWindow(frame)
         return True
-    
+
 app = App(0)
 app.MainLoop()
