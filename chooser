@@ -37,6 +37,7 @@ def which(program):
 # Check whether certain common browsers are present:
 possible_browsers = {'Arora': 'arora',
                      'Chromium': 'chromium-browser',
+                     'Dillo': 'dillo',
                      'Epiphany': 'epiphany',
                      'Firefox': 'firefox',
                      'Konqueror': 'konqueror',
@@ -70,6 +71,12 @@ class AppFrame(wx.Frame):
 
             icon = wx.ArtProvider.GetIcon(name, wx.ART_OTHER,
                                           (64, 64))
+
+            # Load default web browser icon if no application-specific icon
+            # exists:
+            if icon.IsNull():
+                icon = wx.ArtProvider.GetIcon('browser', wx.ART_OTHER,
+                                              (64, 64))
             bmp = wx.BitmapFromIcon(icon)
             button = wx.BitmapButton(panel, -1, bmp, style=wx.NO_BORDER)
             button.SetToolTipString(browser)
