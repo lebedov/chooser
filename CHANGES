@@ -1,0 +1,14 @@
+.. -*- rst -**
+
+Change Log
+==========
+
+Release 0.02 - (April 11, 2012)
+-------------------------------
+* Add support for more browsers.
+* Add man page.
+* Use default icons.
+
+Release 0.01 - (March 05, 2012)
+-------------------------------
+* First public release.

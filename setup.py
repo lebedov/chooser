@@ -1,9 +1,31 @@
 #!/usr/bin/env python
 
+import os, subprocess
+
 from setuptools import setup
 
+import distutils.command.build
+import distutils.command.clean
+
+man_file = 'chooser.1'
+man_src = 'chooser.rst'
+
+class build(distutils.command.build.build):
+    def run(self):
+        distutils.command.build.build.run(self)
+        p = subprocess.Popen('rst2man ' + man_src + ' ' + man_file, shell=True)
+        returncode = p.wait()
+        if returncode != 0:
+            raise RuntimeError('docutils required to build man file')
+
+class clean(distutils.command.clean.clean):
+    def run(self):
+        distutils.command.clean.clean.run(self)
+        if os.path.isfile(man_file):
+            os.unlink(man_file)
+
 NAME = 'chooser'
-VERSION = '0.01'
+VERSION = '0.02'
 AUTHOR = 'Lev Givon'
 AUTHOR_EMAIL = 'lev@columbia.edu'
 URL = 'HTTP://github.com/lebedov/chooser/'
@@ -20,6 +42,9 @@ CLASSIFIERS = [
     'Topic :: Desktop Environment',
     'Topic :: Internet :: WWW/HTTP'
     ]
+DATA_FILES = [('man/man1', [man_file])]
+CMDCLASS = {'build': build,
+            'clean': clean}
 
 if __name__ == "__main__":
     setup(
@@ -33,6 +58,8 @@ if __name__ == "__main__":
         long_description = LONG_DESCRIPTION,
         url = URL,
         scripts = ['chooser'],
-        install_requires = ['wxPython']
+        install_requires = ['wxPython'],
+        data_files = DATA_FILES,
+        cmdclass = CMDCLASS
     )
 

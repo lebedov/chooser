@@ -6,8 +6,9 @@ Chooser
 Package Description
 -------------------
 `chooser` is a graphical utility that enables one to choose which 
-web browser to use when opening a selected URI. Simply set your
-default web browser to the path of the `chooser` program to use. 
+web browser to use when opening a URI. To invoke the utility when attempting to view a selected URI, set your default web browser to
+
+`chooser` \%s
 
 Installation
 ------------
