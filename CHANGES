@@ -2,6 +2,9 @@
 
 Change Log
 ==========
+Release 0.03 - (January 08, 2013)
+---------------------------------
+* Add support for optional configuration file.
 
 Release 0.02 - (April 11, 2012)
 -------------------------------

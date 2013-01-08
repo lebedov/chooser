@@ -7,7 +7,7 @@ the URI to the script via the "%s" variable.
 """
 
 import wx
-import os, sys
+import ConfigParser, os, sys
 
 # Set the URI to the first command line argument (if given):
 if len(sys.argv) > 1:
@@ -33,17 +33,26 @@ def which(program):
             if is_exe(exe_file):
                 return exe_file
     return None
-
-# Check whether certain common browsers are present:
-possible_browsers = {'Arora': 'arora',
-                     'Chromium': 'chromium-browser',
-                     'Dillo': 'dillo',
-                     'Epiphany': 'epiphany',
-                     'Firefox': 'firefox',
-                     'Konqueror': 'konqueror',
-                     'Midori': 'midori',
-                     'Opera': 'opera'}
-
+    
+# Load browser names and paths from configuration file if present:
+config = ConfigParser.ConfigParser()
+config.optionxform = str
+config.read(os.path.expanduser('~/.chooserrc'))
+possible_browsers = {}
+if config.has_section('Browsers'):
+    for item in config.items('Browsers'):
+        possible_browsers[item[0]] = item[1]
+else:
+    # Common browsers:
+    possible_browsers = {'Arora': 'arora',
+                         'Chromium': 'chromium-browser',
+                         'Dillo': 'dillo',
+                         'Epiphany': 'epiphany',
+                         'Firefox': 'firefox',
+                         'Konqueror': 'konqueror',
+                         'Midori': 'midori',
+                         'Opera': 'opera'}
+    
 browsers = {}
 for browser in possible_browsers:
     name = possible_browsers[browser]
@@ -59,7 +68,7 @@ class AppFrame(wx.Frame):
         # Prevent the frame from being resized:
         wx.Frame.__init__(self, parent, id, title, wx.DefaultPosition,
                           wx.Size(80*N, 80),
-                          style=wx.CAPTION | wx.RESIZE_BORDER | wx.CLOSE_BOX)
+                          style=wx.CAPTION | wx.CLOSE_BOX)
         panel = wx.Panel(self, -1)
         sizer = wx.BoxSizer(wx.VERTICAL)
         grid = wx.GridSizer(1, N, 2, 2)
