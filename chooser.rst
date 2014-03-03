@@ -9,9 +9,9 @@ select which browser to use when opening a URI
 ----------------------------------------------
 
 :Author: Lev Givon <lev@columbia.edu>
-:Date: 2013-01-08
+:Date: 2014-03-02
 :Copyright: BSD
-:Version: 0.03
+:Version: 0.3.1
 :Manual section: 1
 
 SYNOPSIS
@@ -30,7 +30,7 @@ CONFIGURATION
 =============
 By default, **chooser** searches for several common web browsers. One may also
 specify which browsers to display in the configuration file
-~/.chooserrc as follows:::
+~/config/chooser/chooserrc as follows:::
 
     [Browsers]
     Firefox: /usr/bin/firefox

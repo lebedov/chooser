@@ -2,6 +2,16 @@
 
 Change Log
 ==========
+
+Release 0.3.1 - (March 2, 2014)
+-------------------------------
+* Switch to PEP 440 version numbering.
+* Include ez_setup.py.
+* Assume optional config file is in standard XDG_CONFIG_HOME location.
+* Access docutils programmatically when building man page.
+* Include built man page in source package so docutils isn't needed for
+  installation.
+
 Release 0.03 - (January 08, 2013)
 ---------------------------------
 * Add support for optional configuration file.

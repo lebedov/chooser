@@ -7,6 +7,7 @@ the URI to the script via the "%s" variable.
 """
 
 import wx
+import xdg.BaseDirectory
 import ConfigParser, os, sys
 
 # Set the URI to the first command line argument (if given):
@@ -33,16 +34,20 @@ def which(program):
             if is_exe(exe_file):
                 return exe_file
     return None
-    
+
 # Load browser names and paths from configuration file if present:
-config = ConfigParser.ConfigParser()
-config.optionxform = str
-config.read(os.path.expanduser('~/.chooserrc'))
 possible_browsers = {}
-if config.has_section('Browsers'):
-    for item in config.items('Browsers'):
-        possible_browsers[item[0]] = item[1]
-else:
+cfg_dir = xdg.BaseDirectory.load_first_config('chooser')
+if cfg_dir is not None:
+    config = ConfigParser.ConfigParser()
+    config.optionxform = str
+    config.read(os.path.join(cfg_dir, 'chooserrc'))
+    if config.has_section('Browsers'):
+        for item in config.items('Browsers'):
+            possible_browsers[item[0]] = item[1]
+
+if possible_browsers == {}:
+
     # Common browsers:
     possible_browsers = {'Arora': 'arora',
                          'Chromium': 'chromium-browser',
@@ -52,7 +57,7 @@ else:
                          'Konqueror': 'konqueror',
                          'Midori': 'midori',
                          'Opera': 'opera'}
-    
+
 browsers = {}
 for browser in possible_browsers:
     name = possible_browsers[browser]

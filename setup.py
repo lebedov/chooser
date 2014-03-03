@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 
-import os, subprocess
+import os
+
+try:
+    import setuptools
+except ImportError:
+    from ez_setup import use_setuptools
+    use_setuptools()
 
 from setuptools import setup
 
@@ -13,10 +19,16 @@ man_src = 'chooser.rst'
 class build(distutils.command.build.build):
     def run(self):
         distutils.command.build.build.run(self)
-        p = subprocess.Popen('rst2man ' + man_src + ' ' + man_file, shell=True)
-        returncode = p.wait()
-        if returncode != 0:
-            raise RuntimeError('docutils required to build man file')
+        if not os.path.isfile(man_file):
+            try:
+                import docutils
+            except:
+                raise RuntimeError('docutils required to build man file')
+            import docutils.core
+            import docutils.writers.manpage
+            w = docutils.writers.manpage.Writer()
+            docutils.core.publish_file(source_path=man_src,
+                                       destination_path=man_file, writer=w)
 
 class clean(distutils.command.clean.clean):
     def run(self):
@@ -24,14 +36,14 @@ class clean(distutils.command.clean.clean):
         if os.path.isfile(man_file):
             os.unlink(man_file)
 
-NAME = 'chooser'
-VERSION = '0.03'
-AUTHOR = 'Lev Givon'
-AUTHOR_EMAIL = 'lev@columbia.edu'
-URL = 'HTTP://github.com/lebedov/chooser/'
-DESCRIPTION = 'Choose browser when opening a URI'
-LONG_DESCRIPTION = DESCRIPTION
-LICENSE = 'BSD'
+NAME =                'chooser'
+VERSION =             '0.3.1'
+AUTHOR =              'Lev Givon'
+AUTHOR_EMAIL =        'lev@columbia.edu'
+URL =                 'https://github.com/lebedov/chooser/'
+DESCRIPTION =         'Choose browser when opening a URI'
+LONG_DESCRIPTION =    DESCRIPTION
+LICENSE =             'BSD'
 CLASSIFIERS = [
     'Development Status :: 3 - Alpha',
     'Environment :: X11 Applications',
@@ -62,4 +74,3 @@ if __name__ == "__main__":
         data_files = DATA_FILES,
         cmdclass = CMDCLASS
     )
-

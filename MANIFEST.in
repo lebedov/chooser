@@ -1,2 +1,3 @@
-include CHANGES LICENSE README.rst chooser.*
+include CHANGES LICENSE README.rst chooser.rst chooser.1 chooser
+include *.py
 exclude MANIFEST.in
