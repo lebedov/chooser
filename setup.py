@@ -37,7 +37,7 @@ class clean(distutils.command.clean.clean):
             os.unlink(man_file)
 
 NAME =                'chooser'
-VERSION =             '0.3.1'
+VERSION =             '0.3.2'
 AUTHOR =              'Lev Givon'
 AUTHOR_EMAIL =        'lev@columbia.edu'
 URL =                 'https://github.com/lebedov/chooser/'
@@ -51,6 +51,7 @@ CLASSIFIERS = [
     'License :: OSI Approved :: BSD License',
     'Operating System :: POSIX',
     'Programming Language :: Python',
+    'Programming Language :: Python :: 2.7',
     'Topic :: Desktop Environment',
     'Topic :: Internet :: WWW/HTTP'
     ]
@@ -72,5 +73,4 @@ if __name__ == "__main__":
         scripts = ['chooser'],
         install_requires = ['wxPython'],
         data_files = DATA_FILES,
-        cmdclass = CMDCLASS
-    )
+        cmdclass = CMDCLASS)

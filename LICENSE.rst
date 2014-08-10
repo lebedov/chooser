@@ -2,7 +2,6 @@
 
 License
 =======
-
 Copyright (c) 2012-2014, Lev Givon.
 All rights reserved.
 
