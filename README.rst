@@ -7,18 +7,18 @@ Package Description
 -------------------
 `chooser` is a graphical utility that enables one to choose which 
 web browser to use when opening a URI. To invoke the utility when attempting 
-to view a selected URI, set your default web browser to
+to view a selected URI, set your default web browser to::
 
-`chooser` \%s
+    chooser "%s"
 
 Quick Start
 -----------
 Make sure that `wxPython <http://wxpython.org/>`_ is installed on your system.
-If you have `pip <http://www.pip-installer.org/>`_ installed, run
+If you have `pip <http://www.pip-installer.org/>`_ installed, run::
 
     pip install chooser
 
-You can also download the source tarball, unpack, and run
+You can also download the source tarball, unpack, and run::
 
     python setup.py install
 
