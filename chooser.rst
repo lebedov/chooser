@@ -11,7 +11,7 @@ select which browser to use when opening a URI
 :Author: Lev Givon <lev@columbia.edu>
 :Date: 2015-01-01
 :Copyright: BSD
-:Version: 0.3.2
+:Version: 0.3.3
 :Manual section: 1
 
 SYNOPSIS

@@ -14,7 +14,8 @@ environments, set your default web browser to::
 
 Quick Start
 -----------
-Make sure that `wxPython <http://wxpython.org/>`_ is installed on your system.
+Make sure that `pyxdg <http://freedesktop.org/wiki/Software/pyxdg/>`_ and 
+`wxPython <http://wxpython.org/>`_ are installed on your system.
 If you have `pip <http://www.pip-installer.org/>`_ installed, run::
 
     pip install chooser
