@@ -71,6 +71,7 @@ if __name__ == "__main__":
         long_description = LONG_DESCRIPTION,
         url = URL,
         scripts = ['chooser'],
-        install_requires = ['wxPython'],
+        install_requires = ['pyxdg',
+                            'wxPython'],
         data_files = DATA_FILES,
         cmdclass = CMDCLASS)

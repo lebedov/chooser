@@ -6,8 +6,9 @@ Chooser
 Package Description
 -------------------
 `chooser` is a graphical utility that enables one to choose which 
-web browser to use when opening a URI. To invoke the utility when attempting 
-to view a selected URI, set your default web browser to::
+web browser to use when opening a URI. To invoke the utility when attempting to 
+view a selected URI via the mouse popup menu provided in many desktop 
+environments, set your default web browser to::
 
     chooser "%s"
 
@@ -28,7 +29,7 @@ Configuration
 -------------
 By default, `chooser` searches for several common web browsers. One may also
 specify which browsers to display in the configuration file
-`~/config/chooser/chooserrc` as follows::
+`~/.config/chooser/chooserrc` as follows::
 
     [Browsers]
     Firefox: /usr/bin/firefox
