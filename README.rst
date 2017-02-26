@@ -48,10 +48,13 @@ The latest source code may be obtained from `GitHub
 
 Author
 ------
-See the included AUTHORS.rst file for more information.
+See the included `AUTHORS.rst
+<https://github.com/lebedov/chooser/blob/master/AUTHORS.rst>`_ file for more
+information.
 
 License
 -------
-This software is licensed under the 
-`BSD License <http://www.opensource.org/licenses/bsd-license>`_.
-See the included LICENSE.rst file for more information.
+This software is licensed under the `BSD License
+<http://www.opensource.org/licenses/bsd-license>`_.  See the included
+`LICENSE.rst <https://github.com/lebedov/chooser/blob/master/LICENSE.rst>`_ file
+for more information.

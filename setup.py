@@ -1,12 +1,7 @@
 #!/usr/bin/env python
 
 import os
-
-try:
-    import setuptools
-except ImportError:
-    from ez_setup import use_setuptools
-    use_setuptools()
+import re
 
 from setuptools import setup
 
@@ -28,7 +23,6 @@ def build_man_file(man_file):
         w = docutils.writers.manpage.Writer()
         docutils.core.publish_file(source_path=man_src,
                                    destination_path=man_file, writer=w)
-
 
 class build(distutils.command.build.build):
     def run(self):
@@ -52,7 +46,9 @@ AUTHOR =              'Lev Givon'
 AUTHOR_EMAIL =        'lev@columbia.edu'
 URL =                 'https://github.com/lebedov/chooser/'
 DESCRIPTION =         'Choose browser when opening a URI'
-LONG_DESCRIPTION =    DESCRIPTION
+with open('README.rst', 'r') as f:
+    LONG_DESCRIPTION = f.read()
+LONG_DESCRIPTION = re.search('.*(^Package Description.*)', LONG_DESCRIPTION, re.MULTILINE|re.DOTALL).group(1)
 LICENSE =             'BSD'
 CLASSIFIERS = [
     'Development Status :: 3 - Alpha',
