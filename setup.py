@@ -41,8 +41,8 @@ class clean(distutils.command.clean.clean):
             os.unlink(man_file)
 
 NAME =                'chooser'
-VERSION =             '0.3.4'
-AUTHOR =              'Lev Givon'
+VERSION =             '0.3.5'
+AUTHOR =              'Lev E. Givon'
 AUTHOR_EMAIL =        'lev@columbia.edu'
 URL =                 'https://github.com/lebedov/chooser/'
 DESCRIPTION =         'Choose browser when opening a URI'
@@ -57,7 +57,8 @@ CLASSIFIERS = [
     'License :: OSI Approved :: BSD License',
     'Operating System :: POSIX',
     'Programming Language :: Python',
-    'Programming Language :: Python :: 2.7',
+    'Programming Language :: Python :: 2',
+    'Programming Language :: Python :: 3',
     'Topic :: Desktop Environment',
     'Topic :: Internet :: WWW/HTTP'
     ]
@@ -79,6 +80,6 @@ if __name__ == "__main__":
         url = URL,
         scripts = ['chooser'],
         install_requires = ['pyxdg',
-                            'wxPython'],
+                            'wxPython >= 4.0.0'],
         data_files = DATA_FILES,
         cmdclass = CMDCLASS)

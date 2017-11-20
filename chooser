@@ -6,14 +6,21 @@ choose which browser to use when opening a URI. Make sure to pass
 the URI to the script via the "%s" variable.
 """
 
-# Copyright (c) 2012-2015, Lev Givon
+# Copyright (c) 2012-2017, Lev E. Givon
 # All rights reserved.
 # Distributed under the terms of the BSD license:
 # http://www.opensource.org/licenses/bsd-license
 
+import os
+import sys
+
+if sys.version_info.major == 2:
+    import ConfigParser as configparser
+else:
+    import configparser
+
 import wx
 import xdg.BaseDirectory
-import ConfigParser, os, sys
 
 # Set the URI to the first command line argument (if given):
 if len(sys.argv) > 1:
@@ -44,7 +51,7 @@ def which(program):
 possible_browsers = {}
 cfg_dir = xdg.BaseDirectory.load_first_config('chooser')
 if cfg_dir is not None:
-    config = ConfigParser.ConfigParser()
+    config = configparser.ConfigParser()
     config.optionxform = str
     config.read(os.path.join(cfg_dir, 'chooserrc'))
     if config.has_section('Browsers'):
@@ -85,21 +92,22 @@ class AppFrame(wx.Frame):
         grid = wx.GridSizer(1, N, 1, 1)
 
         # Dict to map button ids to browser commands:
+        img_size = (64, 64)
         self.button_to_browser = {}
         for browser in browsers.keys():
             name, full_path = browsers[browser]
 
-            icon = wx.ArtProvider.GetIcon(name, wx.ART_OTHER,
-                                          (64, 64))
+            icon = wx.ArtProvider.GetIcon(name, wx.ART_OTHER, img_size)
 
             # Load default web browser icon if no application-specific icon
             # exists:
-            if icon.IsNull():
-                icon = wx.ArtProvider.GetIcon('browser', wx.ART_OTHER,
-                                              (64, 64))
-            bmp = wx.BitmapFromIcon(icon)
+            if not icon.IsOk():
+                icon = wx.ArtProvider.GetIcon('browser', wx.ART_OTHER, img_size)
+
+            bmp = wx.Bitmap()
+            bmp.CopyFromIcon(icon)
             button = wx.BitmapButton(panel, -1, bmp, style=wx.NO_BORDER)
-            button.SetToolTipString(browser)
+            button.SetToolTip(browser)
             grid.Add(button, 0, wx.EXPAND)
             self.Bind(wx.EVT_BUTTON, self.OnClick, button)
             self.button_to_browser[button.Id] = full_path
