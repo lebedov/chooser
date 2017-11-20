@@ -3,7 +3,7 @@
 Change Log
 ==========
 
-Release 0.3.5 - (November 19. 2017)
+Release 0.3.5 - (November 19, 2017)
 -----------------------------------
 * Add Python 3 support.
 * Require wxPython 4.
