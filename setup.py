@@ -80,6 +80,6 @@ if __name__ == "__main__":
         url = URL,
         scripts = ['chooser'],
         install_requires = ['pyxdg',
-                            'wxPython >= 4.0.0'],
+                            'wxPython >= 4.0.*'],
         data_files = DATA_FILES,
         cmdclass = CMDCLASS)
