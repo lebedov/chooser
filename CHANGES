@@ -3,6 +3,10 @@
 Change Log
 ==========
 
+Release 0.3.5.2 - (November 20, 2017)
+-------------------------------------
+* Placage pypi.
+
 Release 0.3.5.1 - (November 20, 2017)
 -------------------------------------
 * Allow wxPython 4 prereleases.

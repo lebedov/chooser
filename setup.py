@@ -41,7 +41,7 @@ class clean(distutils.command.clean.clean):
             os.unlink(man_file)
 
 NAME =                'chooser'
-VERSION =             '0.3.5.1'
+VERSION =             '0.3.5.2'
 AUTHOR =              'Lev E. Givon'
 AUTHOR_EMAIL =        'lev@columbia.edu'
 URL =                 'https://github.com/lebedov/chooser/'
